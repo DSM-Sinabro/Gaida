@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="splashColor">#77d0ff</color>
+
+    <color name="redColor">#F44336</color>
+    <color name="blue">#2196F3</color>
+
+    <color name="main_color">#8091ff</color>
+    <color name="lime">#CDDC39</color>
+
+    <color name="kakaoColor">#FFEB3B</color>
+    <color name="facebookColor">#4b7cd9</color>
+
+</resources>

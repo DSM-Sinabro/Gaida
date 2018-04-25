@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Gaida_Kotiln</string>
+
+    <string name="login_success">로그인 성공</string>
+    <string name="login_error">로그인에 실패</string>
+    <string name="login_not">아이디, 패스워드를 입력해주세요</string>
+
+    <string name="facebook_app_id">2052545738336341</string>
+    <string name="fb_login_protocol_scheme">fb2052545738336341</string>
+
+</resources>
