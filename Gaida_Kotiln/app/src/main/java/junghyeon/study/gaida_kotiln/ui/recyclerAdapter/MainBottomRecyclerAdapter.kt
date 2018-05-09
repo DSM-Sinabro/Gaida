@@ -30,24 +30,24 @@ class MainBottomRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
         when (position) {
             0 -> {
                 viewHolder as MainBottomViewHolder
-                viewHolder.bind("설정",R.drawable.ic_add_24dp)
+                viewHolder.bind("설정",R.drawable.gaida_back)
             }
             1 -> {
-                viewHolder as MainBottomSwitchViewHolder
-                viewHolder.bind("설정",R.drawable.ic_add_24dp)
+                viewHolder as MainBottomViewHolder
+                viewHolder.bind("설정",R.drawable.gaida_back)
 
             }
             2 -> {
                 viewHolder as MainBottomViewHolder
-                viewHolder.bind("설정",R.drawable.ic_add_24dp)
+                viewHolder.bind("설정",R.drawable.gaida_back)
             }
             3 -> {
-                viewHolder as MainBottomSwitchViewHolder
-                viewHolder.bind("설정",R.drawable.ic_add_24dp)
+                viewHolder as MainBottomViewHolder
+                viewHolder.bind("설정",R.drawable.gaida_back)
             }
             4 -> {
                 viewHolder as MainBottomViewHolder
-                viewHolder.bind("설정",R.drawable.ic_add_24dp)
+                viewHolder.bind("설정",R.drawable.gaida_back)
             }
         }
     }
@@ -59,7 +59,7 @@ class MainBottomRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
 
         //var view=null
         return when(viewType){
-            1,3->{
+            10->{
                 val view = inflater!!.inflate(R.layout.view_main_bottom_item_swtich, null)
                 MainBottomSwitchViewHolder(view)
             }
@@ -90,8 +90,8 @@ class MainBottomViewHolder(view : View) : RecyclerView.ViewHolder(view){
 
     fun bind(title: String,image : Int) {
         with(rootView) {
-            ib_bottom_sheet_item_icon.setImageResource(image)
-            tv_bottom_sheet_item_title.text=title
+            iv_main_bottom_item_image.setImageResource(image)
+            tv_main_bottom_item_text.text=title
         }
     }
 }

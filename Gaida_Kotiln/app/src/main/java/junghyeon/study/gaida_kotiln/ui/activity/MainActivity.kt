@@ -63,7 +63,7 @@ class MainActivity : BaseActivity(){
 
         with(bottomSheetView){
             bottomSheetAdapter= MainBottomRecyclerAdapter()
-            main_bottom_sheet_recyclerView.layoutManager= GridLayoutManager(context,2)
+            main_bottom_sheet_recyclerView.layoutManager= GridLayoutManager(context,3)
             main_bottom_sheet_recyclerView.adapter=bottomSheetAdapter
         }
 
