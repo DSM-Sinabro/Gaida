@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="70dp">
 
-            <ImageButton
+          <!--  <ImageButton
                 android:id="@+id/ib_bottom_sheet_icon"
                 android:background="@color/colorWhite"
                 android:layout_width="wrap_content"
@@ -20,16 +20,16 @@
                 android:layout_marginLeft="16dp"
                 android:src="@drawable/ic_linear_scale_24dp"
                 android:layout_marginStart="16dp" />
-
+-->
             <TextView
                 android:id="@+id/tv_bottom_sheet_title"
                 android:layout_width="wrap_content"
                 android:textStyle="bold"
                 android:fontFamily="@font/nanum_regular"
+                android:layout_alignParentLeft="true"
                 android:text="가이다"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_toRightOf="@+id/ib_bottom_sheet_icon"
+                android:layout_marginLeft="32dp"
                 android:layout_centerVertical="true"
                 android:textColor="@android:color/black"
                 android:textSize="20sp" />
@@ -39,9 +39,10 @@
                 android:background="@color/colorWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="12dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_linear_scale_24dp"
+                android:src="@drawable/ic_keyboard_arrow_down_24dp"
                 android:layout_marginRight="32dp"
                 android:layout_marginEnd="32dp" />
         </RelativeLayout>
@@ -56,7 +57,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/main_bottom_sheet_recyclerView"
         android:layout_width="match_parent"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="14dp"
         android:layout_height="320dp"></android.support.v7.widget.RecyclerView>
 
 

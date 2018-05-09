@@ -73,7 +73,7 @@ class MainActivity : BaseActivity(){
 
     private fun setBottomSheetView(view: View){
         with(view){
-            //button_apply_study_bottom_sheet.setOnClickListener { bottomSheet.dismiss() }
+            ib_bottom_sheet_sub_icon.setOnClickListener { bottomSheet.dismiss() }
         }
     }
 }
