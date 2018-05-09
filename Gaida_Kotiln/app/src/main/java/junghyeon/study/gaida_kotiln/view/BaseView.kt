@@ -9,6 +9,6 @@ import android.support.annotation.IdRes
 interface BaseView {
 
     fun getContext() : Context
-    fun showError(@IdRes id : Int)
-    fun showSuccess(@IdRes id : Int)
+    fun showError(msg : String)
+    fun showSuccess(msg : String)
 }

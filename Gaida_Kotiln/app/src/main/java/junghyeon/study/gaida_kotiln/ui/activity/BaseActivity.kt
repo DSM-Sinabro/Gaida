@@ -8,7 +8,7 @@ import junghyeon.study.gaida_kotiln.R
 
 open class BaseActivity : AppCompatActivity() {
 
-    fun showToast(idRes: Int){
-        Toast.makeText(this,idRes, Toast.LENGTH_SHORT).show()
+    fun showToast(msg : String){
+        Toast.makeText(this,msg, Toast.LENGTH_SHORT).show()
     }
 }
