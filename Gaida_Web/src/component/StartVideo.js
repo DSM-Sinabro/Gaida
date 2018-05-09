@@ -5,7 +5,8 @@ class StartVideo extends React.Component {
     render() {
         return(
             <div className = {styles.start_video}>
-
+                <video>
+                </video>
             </div>
         )
     }
