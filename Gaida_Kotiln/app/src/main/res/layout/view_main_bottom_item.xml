@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
+    android:padding="12dp"
     android:layout_height="wrap_content">
 
 
@@ -15,7 +16,7 @@
         android:id="@+id/tv_main_bottom_item_text"
         android:layout_below="@+id/iv_main_bottom_item_image"
         android:fontFamily="@font/nanum_bold"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:layout_marginTop="12dp"
         android:layout_centerHorizontal="true"
         android:textColor="#000"

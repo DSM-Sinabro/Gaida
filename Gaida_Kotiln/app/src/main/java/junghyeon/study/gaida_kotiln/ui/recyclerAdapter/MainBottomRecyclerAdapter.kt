@@ -30,24 +30,40 @@ class MainBottomRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
         when (position) {
             0 -> {
                 viewHolder as MainBottomViewHolder
-                viewHolder.bind("설정",R.drawable.gaida_back)
+                viewHolder.bind("영상촬영",R.drawable.ic_videocam_black_24dp)
             }
             1 -> {
                 viewHolder as MainBottomViewHolder
-                viewHolder.bind("설정",R.drawable.gaida_back)
+                viewHolder.bind("나의앨범",R.drawable.ic_album_24dp)
 
             }
             2 -> {
                 viewHolder as MainBottomViewHolder
-                viewHolder.bind("설정",R.drawable.gaida_back)
+                viewHolder.bind("마이페이지",R.drawable.ic_grade_24dp)
             }
             3 -> {
                 viewHolder as MainBottomViewHolder
-                viewHolder.bind("설정",R.drawable.gaida_back)
+                viewHolder.bind("활동로그",R.drawable.ic_touch_app_24dp)
             }
             4 -> {
                 viewHolder as MainBottomViewHolder
-                viewHolder.bind("설정",R.drawable.gaida_back)
+                viewHolder.bind("공개범위",R.drawable.ic_lock_24dp)
+            }
+            5 -> {
+                viewHolder as MainBottomViewHolder
+                viewHolder.bind("설정",R.drawable.ic_settings_24dp)
+            }
+            6 -> {
+                viewHolder as MainBottomViewHolder
+                viewHolder.bind("추가예정",R.drawable.ic_add_24dp)
+            }
+            7 -> {
+                viewHolder as MainBottomViewHolder
+                viewHolder.bind("추가예정",R.drawable.ic_add_24dp)
+            }
+            8 -> {
+                viewHolder as MainBottomViewHolder
+                viewHolder.bind("추가예정",R.drawable.ic_add_24dp)
             }
         }
     }
@@ -71,7 +87,7 @@ class MainBottomRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
     }
 
     override fun getItemCount(): Int {
-        return 5
+        return 9
     }
 
     override fun getItemViewType(position: Int): Int = position
@@ -84,16 +100,16 @@ class MainBottomViewHolder(view : View) : RecyclerView.ViewHolder(view){
     lateinit var rootView: View
 
     init {
-        rootView = view
-    }
+rootView = view
+}
 
 
-    fun bind(title: String,image : Int) {
-        with(rootView) {
-            iv_main_bottom_item_image.setImageResource(image)
-            tv_main_bottom_item_text.text=title
-        }
+fun bind(title: String,image : Int) {
+    with(rootView) {
+        iv_main_bottom_item_image.setImageResource(image)
+        tv_main_bottom_item_text.text=title
     }
+}
 }
 
 class MainBottomSwitchViewHolder(view : View) : RecyclerView.ViewHolder(view){
