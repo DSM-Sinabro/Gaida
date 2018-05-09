@@ -2,6 +2,7 @@
 
 const User = require('../../models/user'),
     Joi = require('joi');
+    
 exports.localLogin = async (req, res) => {
     const {
         email,
@@ -34,7 +35,6 @@ exports.localLogin = async (req, res) => {
 
     }
     let compare = null;
-    console.log('here');
     if(user){
         try {
             compare = await user.validatePassword(password);
@@ -47,17 +47,32 @@ exports.localLogin = async (req, res) => {
             return;
 
         }
-        if(compare){
-            res.status(200).json({
-                success : true,
-                message : "Success"
-            })
-        } else {
-            res.status(403).json({
+    }
+    if(compare){
+        let token = null;
+        try {
+            token = await user.generateToken(user);
+            await User.updateTokenByEmail({email, token});
+        } catch (e) {
+            console.log("login error : "+e);
+            res.status(500).json({
                 success : false,
-                message : "Forbidden"
+                message : "Server error"
             });
+            return;
         }
+        
+
+        res.status(200).json({
+            success : true,
+            message : "Success",
+            token : token
+        });
+    } else {
+        res.status(403).json({
+            success : false,
+            message : "Forbidden"
+        });
     }
     
 };
@@ -118,14 +133,38 @@ exports.createUser = async (req, res) => {
         return;
 
     }
+    // try {
+    //     await mailer();
+    // } catch(e) {
+    //     console.log('nodemailer error : '+e);
+    //     res.status(500).json({
+    //         success : false,
+    //         message : "Server error"
+    //     });
+    //     return;
+    // }
     res.status(200).json({
         success : true,
         message : "success register"
-    })
+    });
 };
 
 exports.logout = (req, res) => {
-
+    const { token } = req.headers;
+    console.log(token);
+    try {
+        User.logout(token);
+    } catch (e) {
+        res.status(500).json({
+            success : false,
+            message : "Server error"
+        });
+        return;
+    };
+    res.status(200).json({
+        success : true,
+        message : 'success logout'
+    });
 };
 
 exports.checkEmail = async (req, res) => {
@@ -156,13 +195,13 @@ exports.checkEmail = async (req, res) => {
     }
 };
 
-exports.checkUsername = (req, res) => {
+exports.checkUsername = async (req, res) => {
     const {
         username
     } = req.body;
     let result = null;
     try {
-        result = await User.findByUsername(username);
+        result = await User.findByUsername({username});
     } catch (e) {
         console.log('checkUsername error : '+e);
         res.status(500).json({
@@ -184,6 +223,51 @@ exports.checkUsername = (req, res) => {
     }
 };
 
-exports.checkAuth = (req, res) => {
-    
+exports.checkToken = (req, res) => {
+    const { user } = req.body;
+    if(!user) {
+        res.status(200).json({
+            success: false,
+            message : "is not a user"
+        });
+    }
+    req.body = user.profile;
 };
+
+const nodemailer = require('nodemailer');
+
+// Generate test SMTP service account from ethereal.email
+// Only needed if you don't have a real mail account for testing
+
+let mailer = (email) => nodemailer.createTestAccount((err, account) => {
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+        service:'gmail',
+        auth: {
+            user: 'gsw2205@gmail.com', // generated ethereal user
+            pass: '1sangwoo' // generated ethereal password
+        }
+    });
+
+    // setup email data with unicode symbols
+    let mailOptions = {
+        from: 'Gaida auth', // sender address
+        to: `${email}`, // list of receivers
+        subject: 'Gaida auth', // Subject line
+        // text: 'Hello world?', // plain text body
+        html: '<h2>Gaida Auth Code is ..</h2> <p>123456</p>' // html body
+    };
+
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message sent: %s', info.messageId);
+        // Preview only available when sending through an Ethereal account
+        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+        // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+    });
+});

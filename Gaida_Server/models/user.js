@@ -1,8 +1,10 @@
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    bcrypt = require('bcrypt');
-const crypto = require('crypto');
+    // bcrypt = require('bcrypt')
+    crypto = require('crypto');
 const PASSWORD_SECRET = require('../config').PASSWORD_SECRET;
+
+const { generateToken, decodeToken } = require('../lib/token');
 const User = new Schema({
     // _id : {
     //     type : String,
@@ -36,7 +38,10 @@ const User = new Schema({
         type : Date,
         default : Date.now
     },
-    refreshToken : String,
+    refreshToken : {
+        type : String,
+        default : null
+    },
     check : {
         type : Boolean,
         required : true,
@@ -57,6 +62,22 @@ function hash(password) {
 //         return next();
 //     }
 // });
+User.statics.updateTokenByEmail = function({email, token}){
+    // return this.update({email:email},{$set:{refreshToken: token}},{new:true});
+    return this.update({'email':email},{$set:{'refreshToken':token}},{new: true},(err, raw)=>{
+        if(err) return (err);
+        return raw;
+    });
+};
+// function updateTokenByEmail(user, token) {
+//     return new Promise(
+//         (resolve, reject) => {
+//             user.update({'email':user.email},{$set:{'refreshToken':token}},{new: true},(err, raw)=>{
+//                 if(err)  reject(err);
+//                 resolve(token);
+//         });
+//     });
+// }
 User.statics.findByUsername = function(username) {
     return this.findOne({'profile.username': username}).exec();
 };
@@ -70,10 +91,11 @@ User.statics.findByEmailOrUsername = function({username, email}) {
             { email }
         ]
     }).exec();
-}
+};
 User.statics.findAll = function() {
     return this.find({});
-}
+};
+
 User.statics.createUser = function({ username, email, password}) {
     const user = new this({
         profile : {
@@ -84,11 +106,55 @@ User.statics.createUser = function({ username, email, password}) {
     });
 
     return user.save();
-}
+};
 User.methods.validatePassword = function(password) {
     const hashed = hash(password);
     // console.log(this.password);
     // console.log(hashed);
     return this.password === hashed;
-}
+};
+User.methods.generateToken = function() {
+    const payload = {
+        _id: this._id,
+        profile: this.profile
+    };
+
+    // const findByEmailAndUpdate = new Promise(
+    //     (resolve, reject) => {
+    //         this.update({'email':this.email},{$set:{'refreshToken':token}},{new: true},(err, raw)=>{
+    //             if(err)  reject(err);
+    //             console.log(raw);
+    //             resolve(token);
+    //     });
+    // });
+    // let refresh_token = null;
+    return generateToken(payload, 'user');
+        // .then(token => {
+        //     refresh_token = token;
+        //     return this.update({'email':this.email},{$set:{'refreshToken':token}},{new: true});
+        // })
+        // .then(updateResult => {
+        //     console.log(updateResult);
+        //     return refresh_token;
+        // })
+        // .catch(err => {
+        //     console.log(err);
+        // });
+
+    // return token;
+
+};
+
+User.statics.logout = function(token) {
+    decodeToken(token)
+        .then(result => 
+            this.update({'_id':result._id},{$set:{'refreshToken':''}})
+        )
+        .then(nResult =>
+            console.log(nResult)
+        )
+        .catch(err => {
+            console.log(err);
+        });
+};
 module.exports = mongoose.model('User', User );

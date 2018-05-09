@@ -1,10 +1,10 @@
 const express = require('express'),
     http = require('http'),
-    https = require('https'),
+    // https = require('https'),
     morgan = require('morgan'),
-    path = require('path');
+    // path = require('path');
     bodyParser = require('body-parser'),
-    fs = require('fs'),
+    // fs = require('fs'),
     mongoose = require('mongoose');
 
 // const options = {
@@ -20,21 +20,25 @@ const config = require('./config');
 // const PORT = config.PORT || 3000;
 const PORT1 = 3000;
 // const PORT2 = 3001;
+// const jwtMiddleware = require('./lib/token');
 
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+// app.use(jwtMiddleware);
+
 
 // Connecting DB
 mongoose.connect(config.MONGO_URI)
     .then((response)=> {
+        console.log(response);
         console.log('Successfully connected to mongodb on : '+config.MONGO_URI);
     })
     .catch((error)=>{
         console.log('Error: Could not connect to MongoDB : '+error);
-    })
+    });
 mongoose.connection.on('error', function(err) {
-  console.log('Error: Could not connect to MongoDB.');
+  console.log('Error: Could not connect to MongoDB.'+err);
 });
 
 app.use(function (req, res, next) {
