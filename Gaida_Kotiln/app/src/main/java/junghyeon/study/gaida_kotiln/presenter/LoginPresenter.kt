@@ -27,12 +27,12 @@ class LoginPresenter : BasePresenter<LoginView>{
                             @SuppressLint("ResourceType")
                             override fun onResponse(call: Call<AuthModel>?, response: Response<AuthModel>?) {
                                 when (response!!.code()) {
-                                    200 -> loginView!!.showSuccess(R.string.login_success)
+                                    200 -> loginView!!.showSuccess("로그인 성공")
                                 }
                             }
                             @SuppressLint("ResourceType")
                             override fun onFailure(call: Call<AuthModel>?, t: Throwable?) {
-                                loginView!!.showError(R.string.login_error)
+                                loginView!!.showError("로그인 실패")
                             }
                         })
             }
@@ -57,7 +57,7 @@ class LoginPresenter : BasePresenter<LoginView>{
             if(it.passwordValidate()){
                 it.nextMainActivity()
             }else{
-                it.showError(R.string.login_not)
+                it.showError("패스워드를 확인해주세요")
             }
         }
     }
