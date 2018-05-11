@@ -8,6 +8,7 @@
 
     <color name="redColor">#F44336</color>
     <color name="blue">#2196F3</color>
+    <color name="colorWhite">#fff</color>
 
     <color name="main_color">#8091ff</color>
     <color name="lime">#CDDC39</color>

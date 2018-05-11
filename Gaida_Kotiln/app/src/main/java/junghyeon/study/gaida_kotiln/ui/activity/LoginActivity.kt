@@ -7,6 +7,8 @@ import android.support.annotation.IdRes
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import com.facebook.CustomTabActivity
+import com.facebook.FacebookActivity
 import com.facebook.FacebookSdk
 import junghyeon.study.gaida_kotiln.R
 import junghyeon.study.gaida_kotiln.presenter.LoginPresenter
@@ -43,6 +45,7 @@ class LoginActivity : BaseActivity(), LoginView {
             login()
             presenter!!.nextMainActivity()
         }
+
     }
 
     private fun login(){
@@ -61,12 +64,12 @@ class LoginActivity : BaseActivity(), LoginView {
         return this
     }
 
-    override fun showError(@IdRes id: Int) {
-        showToast(id)
+    override fun showError(msg : String) {
+        showToast(msg)
     }
 
-    override fun showSuccess(@IdRes id: Int) {
-        showSuccess(id)
+    override fun showSuccess(msg : String) {
+        showSuccess(msg)
     }
 
     override fun setCheckTextGone() {

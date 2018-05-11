@@ -1,0 +1,26 @@
+.login_sub {
+    width: 350px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-size: 9px;
+    color: rgb(160, 160, 160);
+    font-weight: 300;
+}
+
+@mixin sub_menu() {
+    display: flex;
+    position: absolute;
+    cursor: pointer;
+}
+
+.find_info {
+    @include sub_menu();
+    left: 10px;
+}
+
+.join {
+    @include sub_menu();
+    right: 10px;
+}
