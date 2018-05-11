@@ -8,6 +8,6 @@ router.route('/register/local').post(auth.createUser);
 router.route('/logout/local').post(auth.logout);
 router.route('/checkEmail/:email').get(auth.checkEmail);
 router.route('/checkUsername/:username').get(auth.checkUsername);
-
-
+router.route('/check').get(auth.checkToken);
+router.route('/refreshToken').get(auth.refreshToken);
 module.exports = router;

@@ -4,7 +4,7 @@ const mongoose = require('mongoose'),
     crypto = require('crypto');
 const PASSWORD_SECRET = require('../config').PASSWORD_SECRET;
 
-const { generateToken, decodeToken } = require('../lib/token');
+const { generateToken, generateRefreshToken, decodeToken, refreshRefreshToken } = require('../lib/token');
 const User = new Schema({
     // _id : {
     //     type : String,
@@ -62,9 +62,9 @@ function hash(password) {
 //         return next();
 //     }
 // });
-User.statics.updateTokenByEmail = function({email, token}){
+User.statics.updateTokenByEmail = function(email, refreshToken){
     // return this.update({email:email},{$set:{refreshToken: token}},{new:true});
-    return this.update({'email':email},{$set:{'refreshToken':token}},{new: true},(err, raw)=>{
+    return this.update({'email':email},{$set:{'refreshToken':refreshToken}},{new: true},(err, raw)=>{
         if(err) return (err);
         return raw;
     });
@@ -144,9 +144,14 @@ User.methods.generateToken = function() {
     // return token;
 
 };
-
+User.methods.generateRefreshToken = function() {
+    const payload = {
+        _id: this._id
+    };
+    return generateRefreshToken(payload, 'user');
+};
 User.statics.logout = function(token) {
-    decodeToken(token)
+    decodeRefreshToken(token)
         .then(result => 
             this.update({'_id':result._id},{$set:{'refreshToken':''}})
         )
@@ -156,5 +161,19 @@ User.statics.logout = function(token) {
         .catch(err => {
             console.log(err);
         });
+};
+User.statics.refreshRefreshToken = async function(refreshToken) {
+    try {
+        const payload = await decodeRefreshToken(refreshToken);
+        const user = await this.findOne({'_id':payload._id}).exec();
+        const userUid = await decodeRefreshToken(user.refreshToken);
+        if(payload.uid==userUid){
+            return generateToken({'_id':payload._id,'profile':user.profile}, 'user');
+        } else {
+            return new Error;
+        }
+    } catch(e){
+        return e;
+    }
 };
 module.exports = mongoose.model('User', User );

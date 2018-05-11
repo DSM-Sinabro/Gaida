@@ -1,5 +1,7 @@
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken'),
+    uid = require('uid');
 const JWT_SECRET = require('../config/index').JWT_SECRET;
+const JWT_SECRET2 = require('../config/index').JWT_SECRET2;
 
 exports.generateToken = function(payload) {
     return new Promise(
@@ -7,6 +9,25 @@ exports.generateToken = function(payload) {
             jwt.sign(
                 payload,
                 JWT_SECRET,
+                {
+                    expiresIn: '1d'
+                }, (error, token) => {
+                    if(error) reject(error);
+                    resolve(token);
+                }
+            );
+        }
+    );
+};
+exports.generateRefreshToken = function(payload) {
+    return new Promise(
+        (resolve, reject) => {
+            jwt.sign(
+                {
+                    payload,
+                    'uid' : uid(256)
+                },
+                JWT_SECRET2,
                 {
                     expiresIn: '7d'
                 }, (error, token) => {
@@ -16,7 +37,7 @@ exports.generateToken = function(payload) {
             );
         }
     );
-}
+};
 exports.decodeToken = function(token) {
     return new Promise(
         (resolve, reject) => {
@@ -26,10 +47,19 @@ exports.decodeToken = function(token) {
             });
         }
     );
-}
-
+};
+exports.decodeRefreshToken = function(token) {
+    return new Promise(
+        (resolve, reject) => {
+            jwt.verify(token, JWT_SECRET2, (error, decoded) => {
+                if(error) reject(error);
+                resolve(decoded);
+            });
+        }
+    );
+};
 exports.jwtMiddleware = async (req, res, next) => {
-    const token = req.body.token;
+    const token = req.headers.token;
     if(!token) return next();
     
     try {
@@ -41,15 +71,19 @@ exports.jwtMiddleware = async (req, res, next) => {
                 profile
             } = decoded;
             const freshToken = await generateToken({_id, profile},'user');
-            res.status(200).json({
-                success : true,
-                message : "Success",
-                token : freshToken
-            });
+            req.headers.token=freshToken;
         }
         req.user = decoded;
     } catch(e) {
         req.user = null;
     }
     return next();
-}
+};
+exports.refreshToken = async function(refreshToken) {
+    try {
+        const decoded = await decodeRefreshToken(refreshToken);
+        
+    } catch(e) {
+        return err;
+    }
+};

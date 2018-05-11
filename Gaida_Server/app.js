@@ -55,11 +55,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-// // app.get('/:email', function(req, res){
-// //     const email = req.params.email;
-// //     // res.status(200).json(email);
-// //     res.send(email);
-// //  });
 // // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //     var err = new Error('Not Found');
@@ -68,7 +63,7 @@ app.use(function (req, res, next) {
 // });
 
 // // error handler
-// app.use(function(err, req, res, next) {
+// app.use(function(err, req, res) {
 //     // set locals, only providing error in development
 //     res.locals.message = err.message;
 //     res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -76,8 +71,10 @@ app.use(function (req, res, next) {
 //     // render the error page
 //     res.status(err.status || 500);
 //     res.render('error');
+    
 // });
-
+const { jwtMiddleware } = require('./lib/token');
+app.use(jwtMiddleware);
 const router = require('./routes');
 app.use('/',router);
 // let user = require('./controllers/auth.controller');

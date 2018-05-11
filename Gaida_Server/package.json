@@ -22,6 +22,7 @@
     "nodemailer": "^4.6.4",
     "nodemon": "^1.17.3",
     "parse-error": "^0.2.0",
-    "rand-token": "^0.4.0"
+    "rand-token": "^0.4.0",
+    "uid": "0.0.2"
   }
 }
