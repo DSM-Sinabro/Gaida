@@ -21,11 +21,14 @@ exports.generateToken = function(payload) {
 };
 exports.generateRefreshToken = function(payload) {
     return new Promise(
-        (resolve, reject) => {
+        (resolve, reject) => { 
+            console.log(payload);
             jwt.sign(
                 {
-                    payload,
-                    'uid' : uid(256)
+                    'payload':{
+                        '_id' : payload._id,
+                        'uid' : uid(256)
+                    }
                 },
                 JWT_SECRET2,
                 {
@@ -78,12 +81,4 @@ exports.jwtMiddleware = async (req, res, next) => {
         req.user = null;
     }
     return next();
-};
-exports.refreshToken = async function(refreshToken) {
-    try {
-        const decoded = await decodeRefreshToken(refreshToken);
-        
-    } catch(e) {
-        return err;
-    }
 };

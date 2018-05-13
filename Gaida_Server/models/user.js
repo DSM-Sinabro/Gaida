@@ -4,7 +4,7 @@ const mongoose = require('mongoose'),
     crypto = require('crypto');
 const PASSWORD_SECRET = require('../config').PASSWORD_SECRET;
 
-const { generateToken, generateRefreshToken, decodeToken, refreshRefreshToken } = require('../lib/token');
+const { generateToken, generateRefreshToken, decodeRefreshToken } = require('../lib/token');
 const User = new Schema({
     // _id : {
     //     type : String,
@@ -69,6 +69,13 @@ User.statics.updateTokenByEmail = function(email, refreshToken){
         return raw;
     });
 };
+User.methods.updateTokenBy_id = function(_id, refreshToken){
+    // return this.update({email:email},{$set:{refreshToken: token}},{new:true});
+    return this.update({'_id':_id},{$set:{'refreshToken':refreshToken}},{new: true},(err, raw)=>{
+        if(err) return (err);
+        return raw;
+    });
+};
 // function updateTokenByEmail(user, token) {
 //     return new Promise(
 //         (resolve, reject) => {
@@ -109,8 +116,6 @@ User.statics.createUser = function({ username, email, password}) {
 };
 User.methods.validatePassword = function(password) {
     const hashed = hash(password);
-    // console.log(this.password);
-    // console.log(hashed);
     return this.password === hashed;
 };
 User.methods.generateToken = function() {
@@ -118,31 +123,7 @@ User.methods.generateToken = function() {
         _id: this._id,
         profile: this.profile
     };
-
-    // const findByEmailAndUpdate = new Promise(
-    //     (resolve, reject) => {
-    //         this.update({'email':this.email},{$set:{'refreshToken':token}},{new: true},(err, raw)=>{
-    //             if(err)  reject(err);
-    //             console.log(raw);
-    //             resolve(token);
-    //     });
-    // });
-    // let refresh_token = null;
     return generateToken(payload, 'user');
-        // .then(token => {
-        //     refresh_token = token;
-        //     return this.update({'email':this.email},{$set:{'refreshToken':token}},{new: true});
-        // })
-        // .then(updateResult => {
-        //     console.log(updateResult);
-        //     return refresh_token;
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        // });
-
-    // return token;
-
 };
 User.methods.generateRefreshToken = function() {
     const payload = {
@@ -150,30 +131,65 @@ User.methods.generateRefreshToken = function() {
     };
     return generateRefreshToken(payload, 'user');
 };
-User.statics.logout = function(token) {
-    decodeRefreshToken(token)
-        .then(result => 
-            this.update({'_id':result._id},{$set:{'refreshToken':''}})
-        )
-        .then(nResult =>
-            console.log(nResult)
-        )
-        .catch(err => {
-            console.log(err);
-        });
-};
-User.statics.refreshRefreshToken = async function(refreshToken) {
+User.statics.checkRefreshToken = async function(refreshToken) {
+    let decoded = null;
+    let user = null;
+    let decoded2 = null;
     try {
-        const payload = await decodeRefreshToken(refreshToken);
-        const user = await this.findOne({'_id':payload._id}).exec();
-        const userUid = await decodeRefreshToken(user.refreshToken);
-        if(payload.uid==userUid){
-            return generateToken({'_id':payload._id,'profile':user.profile}, 'user');
-        } else {
-            return new Error;
+        decoded = await decodeRefreshToken(refreshToken);
+        console.log(decoded.payload._id);
+        user = await this.findOne({'_id':decoded.payload._id});
+        console.log(user);
+        if(user){
+            decoded2 = await decodeRefreshToken(user.refreshToken);
+            if(decoded.payload.uid == decoded2.payload.uid){
+                console.log(decoded.payload.uid == decoded2.payload.uid);
+                return user;
+            }else {
+                return null;
+            }
+        }else {
+            return null;
         }
+        // console.log(decoded.payload.uid);
+        // console.log(decoded2.payload.uid);
+        
+        
     } catch(e){
         return e;
     }
+};
+User.statics.generateTokens = async function() {
+    const token = await this.generateToken();
+    const refreshToken = await this.generateRefreshToken();
+    let tokens = {
+        token,
+        refreshToken
+    };
+    return tokens;
+};
+User.statics.logout = function(token) {
+    return decodeRefreshToken(token)
+        .then(result => {
+                console.log(result);
+                return this.update({'_id':result.payload._id},{$set:{'refreshToken':null}}) 
+            }   
+        )
+        .then(nResult =>
+            nResult
+        )
+        .catch(err => {
+            return err;
+        });
+};
+User.statics.test = async function(test) {
+    let result = null;
+    try{
+         result = await decodeRefreshToken(test);
+
+    } catch(e) {
+        return e;
+    }
+    return result;
 };
 module.exports = mongoose.model('User', User );

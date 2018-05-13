@@ -1,7 +1,6 @@
 
 const User = require('../../models/user'),
     Joi = require('joi');
-    
 exports.localLogin = async (req, res) => {
     const {
         email,
@@ -152,22 +151,33 @@ exports.createUser = async (req, res) => {
     });
 };
 
-exports.logout = (req, res) => {
+exports.logout =async (req, res) => {
     const { token } = req.headers;
-    console.log(token);
+    let result = null;
     try {
-        User.logout(token);
+        result = await User.logout(token);
+        console.log(result);
     } catch (e) {
+
         res.status(500).json({
             success : false,
             message :  'Server error'
         });
         return;
     }
-    res.status(200).json({
-        success : true,
-        message : 'success logout'
-    });
+    if(result){
+        res.status(200).json({
+            success : true,
+            message : 'success logout'
+        });
+    }else {
+        res.status(500).json({
+            success : false,
+            message :  'Server error'
+        });
+        return;
+    }
+    
 };
 
 exports.checkEmail = async (req, res) => {
@@ -237,24 +247,30 @@ exports.checkToken = (req, res) => {
     req.body = user.profile;
 };
 
+// exports.refreshToken = async (req, res ) => {
+//     const {
+//         refreshtoken
+//     } = req.headers;
+//     let lll = null;
+//     let token = null;
+//     try {
+//         lll = await User.findByEmail('gsw2205@gmail.com');
+//         token = await lll.generateToken();
+//     } catch(e){
+//         return e;
+//     }
+//     res.status(200).json({
+//         token
+//     });
+// };
 exports.refreshToken = async (req, res) => {
     const {
-        refreshToken
+        refreshtoken
     } = req.headers;
+    let user = null;
     try{
-        const token = await User.refreshRefreshToken(refreshToken);
-        if(token){
-            res.status(200).json({
-                success : true,
-                message : 'Success',
-                token : token,
-            });
-        } else {
-            res.status(403).json({
-                success: false,
-                message : 'Forhidden'
-            });
-        }
+        user = await User.checkRefreshToken(refreshtoken);
+        console.log(user);
     } catch(e){
         console.log(e);
         res.status(500).json({
@@ -262,6 +278,31 @@ exports.refreshToken = async (req, res) => {
             message :  'Server error'
         });
         return;
+    }
+    if(user){
+        let newTokens = null;
+        try {
+            newTokens = await user.generateTokens();
+        }catch (e) {
+            console.log(e);
+            res.status(500).json({
+                success : false,
+                message :  'Server error'
+            });
+            return;
+        }
+        
+        res.status(200).json({
+            success : true,
+            message : 'Success',
+            token : newTokens.token,
+            refreshToken : newRefreshTokens.refreshToken
+        });
+    }else {
+        res.status(403).json({
+            success: false,
+            message : 'Forhidden'
+        });
     }
 };
 // const nodemailer = require('nodemailer');

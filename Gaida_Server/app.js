@@ -31,7 +31,8 @@ app.use(bodyParser.json());
 // Connecting DB
 mongoose.connect(config.MONGO_URI)
     .then((response)=> {
-        console.log(response);
+        // console.log(response);
+        response;
         console.log('Successfully connected to mongodb on : '+config.MONGO_URI);
     })
     .catch((error)=>{
