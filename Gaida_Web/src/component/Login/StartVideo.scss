@@ -1,5 +1,5 @@
 .start_video {
-    width: 30%;
+    width: 300px;
     height: 100%;
     position: relative;
     display: flex;
@@ -15,6 +15,13 @@ video {
     left: 0;
     float: left;
     z-index: 1;
+
+}
+
+.controller {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .pause, .play {
@@ -26,5 +33,9 @@ video {
     z-index: 2;
     display: flex;
     cursor: pointer;
+}
+
+.video_cover {
+    width: 100%;
 }
 

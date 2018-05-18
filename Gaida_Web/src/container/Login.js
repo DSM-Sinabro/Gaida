@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthModal from '../component/AuthModal';
+import AuthModal from '../component/Login/AuthModal';
 
 class Login extends React.Component {
     constructor(props) {

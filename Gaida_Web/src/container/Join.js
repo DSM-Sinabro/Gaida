@@ -1,16 +1,16 @@
 import React from 'react';
 
-class Main extends React.Component {
+class Join extends React.Component {
     constructor(props) {
         super(props);
     }
     render() {
         return(
             <div>
-                hello world!
+                JoinnPage
             </div>
-        );
+        )
     }
 }
 
-export default Main;
+export default Join
