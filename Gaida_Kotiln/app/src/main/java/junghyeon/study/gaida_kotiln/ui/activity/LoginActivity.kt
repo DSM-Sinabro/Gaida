@@ -23,7 +23,6 @@ class LoginActivity : BaseActivity(), LoginView {
         FacebookSdk.sdkInitialize(applicationContext)
 
         setContentView(R.layout.activity_login)
-
         presenter= LoginPresenter()
         presenter!!.addView(this)
 
@@ -45,7 +44,6 @@ class LoginActivity : BaseActivity(), LoginView {
             login()
             presenter!!.nextMainActivity()
         }
-
     }
 
     private fun login(){

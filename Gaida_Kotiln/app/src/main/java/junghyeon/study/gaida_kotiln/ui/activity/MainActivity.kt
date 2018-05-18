@@ -43,7 +43,6 @@ class MainActivity : BaseActivity(){
             }
         })
 
-
         setBottomSheet()
         floating_button.setOnClickListener {
             bottomSheet.show()

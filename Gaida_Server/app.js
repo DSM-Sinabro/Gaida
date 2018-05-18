@@ -1,10 +1,10 @@
 const express = require('express'),
     http = require('http'),
-    https = require('https'),
+    // https = require('https'),
     morgan = require('morgan'),
-    path = require('path');
+    // path = require('path');
     bodyParser = require('body-parser'),
-    fs = require('fs'),
+    // fs = require('fs'),
     mongoose = require('mongoose');
 
 // const options = {
@@ -20,21 +20,26 @@ const config = require('./config');
 // const PORT = config.PORT || 3000;
 const PORT1 = 3000;
 // const PORT2 = 3001;
+// const jwtMiddleware = require('./lib/token');
 
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+// app.use(jwtMiddleware);
+
 
 // Connecting DB
 mongoose.connect(config.MONGO_URI)
     .then((response)=> {
+        // console.log(response);
+        response;
         console.log('Successfully connected to mongodb on : '+config.MONGO_URI);
     })
     .catch((error)=>{
         console.log('Error: Could not connect to MongoDB : '+error);
-    })
+    });
 mongoose.connection.on('error', function(err) {
-  console.log('Error: Could not connect to MongoDB.');
+  console.log('Error: Could not connect to MongoDB.'+err);
 });
 
 app.use(function (req, res, next) {
@@ -51,11 +56,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-// // app.get('/:email', function(req, res){
-// //     const email = req.params.email;
-// //     // res.status(200).json(email);
-// //     res.send(email);
-// //  });
 // // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //     var err = new Error('Not Found');
@@ -64,7 +64,7 @@ app.use(function (req, res, next) {
 // });
 
 // // error handler
-// app.use(function(err, req, res, next) {
+// app.use(function(err, req, res) {
 //     // set locals, only providing error in development
 //     res.locals.message = err.message;
 //     res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -72,8 +72,10 @@ app.use(function (req, res, next) {
 //     // render the error page
 //     res.status(err.status || 500);
 //     res.render('error');
+    
 // });
-
+const { jwtMiddleware } = require('./lib/token');
+app.use(jwtMiddleware);
 const router = require('./routes');
 app.use('/',router);
 // let user = require('./controllers/auth.controller');

@@ -16,7 +16,6 @@ import retrofit2.Response
 
 class LoginPresenter : BasePresenter<LoginView>{
 
-
     private var loginView: LoginView? = null
 
     fun login() {
@@ -37,7 +36,6 @@ class LoginPresenter : BasePresenter<LoginView>{
                         })
             }
         }
-
     }
 
     fun checkPasswordValidate(){
