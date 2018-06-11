@@ -11,16 +11,6 @@
         android:elevation="4dp"
         android:background="#fff">
 
-        <ImageButton
-            android:id="@+id/ib_toolbar_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="12dp"
-            android:layout_marginStart="12dp"
-            android:background="@color/colorWhite"
-            android:src="@drawable/ic_arrow_back_black_24dp" />
-
         <TextView
             android:id="@+id/tv_toolbar_title"
             android:layout_width="wrap_content"
@@ -79,11 +69,9 @@
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:layout_alignParentTop="true"
-            android:drawableLeft="@drawable/password_icon"
             android:layout_marginTop="4dp"
-            android:drawablePadding="8dip"
             android:textColor="#000"
-            android:textColorHint="#F5F5F5"
+            android:textColorHint="#ddd"
             android:hint="가이다 아이디"
             android:textSize="14sp"
             android:theme="@style/EditTextStyle"
@@ -97,17 +85,15 @@
             android:layout_width="match_parent"
             android:layout_marginLeft="32dp"
             android:textSize="14sp"
-            android:textColorHint="#F5F5F5"
+            android:textColorHint="#ddd"
             android:layout_marginRight="32dp"
             android:textColor="#000"
             android:hint="비밀번호"
             android:layout_below="@+id/id"
-            android:drawableLeft="@drawable/password_icon"
-            android:drawablePadding="8dip"
             android:layout_marginTop="12dp"
             android:theme="@style/EditTextStyle"
             android:layout_height="wrap_content" />
-        
+
         <RelativeLayout
             android:padding="4dp"
             android:layout_below="@+id/password"

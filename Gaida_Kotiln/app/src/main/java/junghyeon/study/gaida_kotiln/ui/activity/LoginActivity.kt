@@ -47,7 +47,6 @@ class LoginActivity : BaseActivity(), LoginView {
 
         iv_login_check.setOnClickListener {
             checkAble=!checkAble
-
             when(checkAble){
                 true-> iv_login_check.setImageResource(R.drawable.checked_normal)
                 false-> iv_login_check.setImageResource(R.drawable.unchecked_normal)
