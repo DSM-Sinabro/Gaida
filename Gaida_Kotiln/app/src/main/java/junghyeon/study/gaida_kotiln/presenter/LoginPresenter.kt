@@ -20,7 +20,7 @@ class LoginPresenter : BasePresenter<LoginView>{
 
     fun login() {
         loginView?.let {
-            if (it.passwordValidate()) {
+            if (true) {
                 HttpService.api.signIn(it.getUserId(), it.getUserPassword())
                         .enqueue(object : Callback<AuthModel> {
                             @SuppressLint("ResourceType")
@@ -40,7 +40,7 @@ class LoginPresenter : BasePresenter<LoginView>{
 
     fun checkPasswordValidate(){
         loginView?.let{
-            if(it.passwordValidate()){
+            if(true){
                 it.setCheckTextGone()
             }else{
                 it.setCheckTextVisible()
@@ -52,7 +52,7 @@ class LoginPresenter : BasePresenter<LoginView>{
     fun nextMainActivity(){
         //null 아닐때만
         loginView?.let {
-            if(it.passwordValidate()){
+            if(true){
                 it.nextMainActivity()
             }else{
                 it.showError("패스워드를 확인해주세요")

@@ -31,7 +31,7 @@
 
 
             <EditText
-                android:id="@+id/id"
+                android:id="@+id/ida"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -48,7 +48,7 @@
 
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/passworda"
                 android:theme="@style/EditTextStyle"
                 android:layout_width="280dp"
                 android:layout_below="@+id/id"
@@ -97,7 +97,7 @@
 
 
             <Button
-                android:id="@+id/loginButton"
+                android:id="@+id/loginButtonA"
                 android:layout_width="280dp"
                 android:layout_below="@+id/cb_login_remember"
                 android:layout_height="wrap_content"
