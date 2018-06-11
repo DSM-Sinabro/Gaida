@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './StartVideo.scss';
+import styles from './assets.scss';
 import video from '../../../assets/main.mp4';
 
 class StartVideo extends React.Component {
@@ -20,6 +20,7 @@ class StartVideo extends React.Component {
                 <video autoPlay id = "video" autoPlay >
                     <source src = { video } type = "video/mp4"/>
                 </video>
+                
                 <div className = {styles.controller}>
                     <div className = {styles.pause} onClick = {() => this.videoControl('pause')} style = {{'display': this.state.videoStatus ? 'flex' : 'none'}}>pause</div>
                     <div className = {styles.play} onClick = {() => this.videoControl('play')} style = {{'display' : this.state.videoStatus ? 'none' : 'flex'}}>play</div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './LoginSub.scss';
+import { Router, Link } from 'react-router-dom';
 
 class LoginSub extends React.Component {
     render () {
@@ -10,7 +11,7 @@ class LoginSub extends React.Component {
                     <div>비밀번호 변경</div>
                 </div>
                 <div className = {styles.join}>
-                    회원가입
+                    <Link to = "/join">회원가입</Link>
                 </div>
             </div>
         )
