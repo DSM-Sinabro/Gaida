@@ -26,13 +26,20 @@ class MypageRecyclerAdapter(confirm : Int) : RecyclerView.Adapter<MypageRecycler
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MyPageViewHolder {
         inflater = LayoutInflater.from(parent!!.context)
         context = parent.context
-        val view = inflater!!.inflate(R.layout.view_main_bottom_item_swtich, null)
+        val viewPost = inflater!!.inflate(R.layout.view_mypage_post, null)
 
-        return MyPageViewHolder(view)
+        val viewInterest = inflater!!.inflate(R.layout.view_main_bottom_item_swtich, null)
+
+
+        return when(mConfirm){
+            0->MyPageViewHolder(viewPost)
+            1->MyPageViewHolder(viewInterest)
+            else->MyPageViewHolder(viewPost)
+        }
     }
 
     override fun getItemCount(): Int {
-        when(mConfirm){
+        return when(mConfirm){
             1->postArr.size
             2->interestArr.size
             else->0
@@ -40,7 +47,8 @@ class MypageRecyclerAdapter(confirm : Int) : RecyclerView.Adapter<MypageRecycler
     }
 
     override fun onBindViewHolder(holder: MyPageViewHolder?, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+
     }
 
 

@@ -97,7 +97,7 @@ class MainBottomRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
 
         //var view=null
         return when(viewType){
-            10->{
+            1->{
                 val view = inflater!!.inflate(R.layout.view_main_bottom_item_swtich, null)
                 MainBottomSwitchViewHolder(view)
             }
