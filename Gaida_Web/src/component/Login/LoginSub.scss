@@ -7,6 +7,11 @@
     font-size: 9px;
     color: rgb(160, 160, 160);
     font-weight: 300;
+
+    a{
+        text-decoration: none;
+        color: rgb(160,160,160);
+    }
 }
 
 @mixin sub_menu() {

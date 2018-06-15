@@ -1,0 +1,106 @@
+.joinForm {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+$inputBorderColor : #8FD4F9;
+$inputBorderRadius : 15px;
+
+.inputLongbox {
+    width: 400px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    flex-direction: column;
+}
+
+.funcDesc {
+    color: #C4C4C4;
+    margin-left: 15px;
+    font-size: 12px; 
+}
+
+.inputCover {
+    margin-top: 3px;
+    width: 100%;
+    height: 55%;
+    border: 1px solid $inputBorderColor;
+    border-radius: $inputBorderRadius;
+    input {
+        width: 90%;
+        height: 90%;
+        border-radius: $inputBorderRadius;
+        border: none;
+        outline: none;
+        text-indent: 10px;
+        font-size: 13px;
+    }
+}
+
+.half {
+    width: 100%;
+    height: 55%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.halfCover {
+    width: 45%;
+    height: 100%;
+    border: 1px solid $inputBorderColor;
+    border-radius: $inputBorderRadius;
+
+    input {
+        width: 90%;
+        height: 90%;
+        border-radius: $inputBorderRadius;
+        outline: none;
+        border: none;
+        font-size: 13px;
+        text-indent: 10px;
+    }
+}
+
+.whitemodal {
+  width: 1000px;
+  height: 500px;
+  background-color: white;
+  box-shadow: 3px 3px 3px rgb(112, 112, 112);
+  display: flex;
+  justify-content: center;
+  
+}
+
+.joinModal {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(119, 208, 255, 0.78);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.joinButt {
+  width: 380px;
+  height: 50px;
+  background-color: $inputBorderColor;
+  border-radius: $inputBorderRadius;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+}
+
+.joinbuttSub {
+  width: 380px;
+  height: 30px;
+  border: 1px solid black;
+}
