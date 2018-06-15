@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -42,7 +42,9 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.IntroActivity"></activity>
+        <activity android:name=".ui.activity.IntroActivity" />
+        <activity android:name=".ui.activity.AlbumActivity" />
+        <activity android:name=".ui.activity.MypageActivity"></activity>
     </application>
 
 </manifest>
