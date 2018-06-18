@@ -1,13 +1,13 @@
 import React from 'react';
-import styles from './LoginModal.scss'
+import styles from '../assets/assets.scss';
 import StartVideo from '../assets/StartVideo';
 import LoginForm from './LoginForm';
 import SocialLoginForm from './SocialLoginForm';
 
-class LoginModal extends React.Component {
+class Modal extends React.Component {
     render() {
         return(
-            <div className = {styles.loginModal}>
+            <div className = {styles.Modal}>
                 <div className = {styles.whitemodal}>
                     <StartVideo />
                     <LoginForm />
@@ -17,4 +17,4 @@ class LoginModal extends React.Component {
     }
 }
 
-export default LoginModal;
+export default Modal;

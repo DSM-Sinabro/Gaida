@@ -8,7 +8,7 @@ class JoinForm extends React.Component {
     render() {
         return(
             <div className = { styles.joinForm }>
-                <h1>회원가입</h1>
+                <div className = {styles.joinForm_text}>회원가입</div>
                 <JoinFormContent />
                 <JoinButt />
             </div>

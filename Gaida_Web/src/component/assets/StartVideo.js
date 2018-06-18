@@ -22,8 +22,8 @@ class StartVideo extends React.Component {
                 </video>
                 
                 <div className = {styles.controller}>
-                    <div className = {styles.pause} onClick = {() => this.videoControl('pause')} style = {{'display': this.state.videoStatus ? 'flex' : 'none'}}>pause</div>
-                    <div className = {styles.play} onClick = {() => this.videoControl('play')} style = {{'display' : this.state.videoStatus ? 'none' : 'flex'}}>play</div>
+                    <div className = {styles.pause} onClick = {() => this.videoControl('pause')} style = {{'display': this.state.videoStatus ? 'flex' : 'none'}}></div>
+                    <div className = {styles.play} onClick = {() => this.videoControl('play')} style = {{'display' : this.state.videoStatus ? 'none' : 'flex'}}></div>
                 </div>
             </div>
         )

@@ -1,0 +1,39 @@
+.sidemenu {
+  width: 200px;
+  height: 100%;
+  background-color: #EDEDED;
+  position: fixed;
+}
+
+ul {
+  margin-top: 30px;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  width: 100%;
+  height: 50px;
+  text-align: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+li > div {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-indent: 50px;
+  font-weight: 700;
+  color: #797979;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #77D0FF;
+    color: white;
+  }
+}
+

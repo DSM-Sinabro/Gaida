@@ -16,7 +16,7 @@ class JoinFormContent extends React.Component {
               </div>  
 
               <div className = { styles.inputLongbox}>
-                 <div className = {styles.funcDesc}>사용하는 이메일을 입력해 주세요</div>
+                 <div className = {styles.funcDesc}>비밀번호를 입력해 주세요</div>
                   <div className = {styles.inputCover}><input /></div> 
               </div>  
 
