@@ -1,8 +1,12 @@
 import React from 'react';
 import styles from './styles.scss';
 
-const MenuBar = _ => {
-  return <div className = {styles.menubar}></div>
-}
 
+class MenuBar extends React.Component {
+  render() {
+    return(
+      <div className = {styles.menubar} onClick = {this.props.setSideOpen}></div>
+    )
+  }
+}
 export default MenuBar;
