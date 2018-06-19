@@ -20,7 +20,6 @@ class LoginPresenter : BasePresenter<LoginView>{
 
     fun login() {
         loginView?.let {
-            if (true) {
                 HttpService.api.signIn(it.getUserId(), it.getUserPassword())
                         .enqueue(object : Callback<AuthModel> {
                             @SuppressLint("ResourceType")
@@ -35,16 +34,11 @@ class LoginPresenter : BasePresenter<LoginView>{
                             }
                         })
             }
-        }
     }
 
     fun checkPasswordValidate(){
         loginView?.let{
-            if(true){
-                it.setCheckTextGone()
-            }else{
-                it.setCheckTextVisible()
-            }
+            it.setCheckTextGone()
         }
     }
 

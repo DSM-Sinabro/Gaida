@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import junghyeon.study.gaida_kotiln.R
+import junghyeon.study.gaida_kotiln.ui.activity.MypageActivity
 import kotlinx.android.synthetic.main.view_main_bottom_item.view.*
 import kotlinx.android.synthetic.main.view_main_bottom_item_swtich.view.*
 
@@ -27,6 +28,7 @@ class MainBottomRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
 
         var viewHolder : RecyclerView.ViewHolder?=holder
+
         when (position) {
             0 -> {
                 viewHolder as MainBottomViewHolder
@@ -43,7 +45,10 @@ class MainBottomRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
             }
             2 -> {
                 viewHolder as MainBottomViewHolder
-                viewHolder.bind("마이페이지",R.drawable.ic_grade_24dp,{
+                viewHolder.bind("마이페이지", R.drawable.ic_grade_24dp, {
+                    Intent(context, MypageActivity::class.java).let {
+                        context!!.startActivity(it)
+                    }
 
                 })
             }

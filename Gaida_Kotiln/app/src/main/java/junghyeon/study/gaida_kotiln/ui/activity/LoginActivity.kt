@@ -40,7 +40,7 @@ class LoginActivity : BaseActivity(), LoginView {
         })
 
         loginButton.setOnClickListener {
-            login()
+//            login()
             presenter!!.nextMainActivity()
 
         }
