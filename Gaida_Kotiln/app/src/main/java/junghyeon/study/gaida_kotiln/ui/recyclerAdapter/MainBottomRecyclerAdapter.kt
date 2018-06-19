@@ -28,6 +28,7 @@ class MainBottomRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
 
         var viewHolder : RecyclerView.ViewHolder?=holder
+
         when (position) {
             0 -> {
                 viewHolder as MainBottomViewHolder
@@ -97,7 +98,7 @@ class MainBottomRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
 
         //var view=null
         return when(viewType){
-            1->{
+            10->{
                 val view = inflater!!.inflate(R.layout.view_main_bottom_item_swtich, null)
                 MainBottomSwitchViewHolder(view)
             }
