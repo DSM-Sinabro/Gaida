@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Join.scss';
+import styles from '../assets/assets.scss';
 import StartVideo from '../assets/StartVideo';
 import JoinForm from './JoinForm';
 
@@ -9,7 +9,7 @@ class JoinModal extends React.Component {
     }
     render() {
         return(
-            <div className = { styles.joinModal }>
+            <div className = { styles.Modal }>
                 <div className = { styles.whitemodal}>
                     <StartVideo />
                     <JoinForm />
