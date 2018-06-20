@@ -1,6 +1,33 @@
-.homeContent {
 
-  padding: 30px;
+.homeContent, .homeContent__menuout {
+  width: 100%;
   position: absolute;
-  left: 200px;
+  height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 }
+
+.recommendService, .popularGaida {
+  width: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.popularGaida__template {
+  width: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  position: relative;
+}
+
+
+

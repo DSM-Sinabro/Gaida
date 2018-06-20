@@ -17,7 +17,7 @@ class StartVideo extends React.Component {
         console.log(this.state.showController)
         return(
             <div className = {styles.start_video} onMouseOver = {(e) => this.showControl(e)} onMouseOut = {(e) => this.hideControl(e)}>
-                <video autoPlay id = "video" autoPlay >
+                <video autoPlay id = "video" autoPlay>
                     <source src = { video } type = "video/mp4"/>
                 </video>
                 
