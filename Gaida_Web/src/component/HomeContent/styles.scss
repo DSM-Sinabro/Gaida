@@ -1,26 +1,28 @@
 
 .homeContent, .homeContent__menuout {
+  height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeContent {
+  width: calc(100% - 200px);
+}
+
+.homeContent__menuout {
   width: 100%;
-  position: absolute;
-  height: calc(100vh - 80px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
 }
 
-.recommendService, .popularGaida {
-  width: 650px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  position: relative;
+
+.recommendService {
 }
 
-.popularGaida__template {
-  width: 650px;
+.popularGaida {
+}
+
+.service__content {
+  width: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,5 +31,23 @@
   position: relative;
 }
 
+// .recommendService, .popularGaida {
+//   width: 650px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+//   flex-wrap: wrap;
+//   position: relative;
+// }
 
+// .popularGaida__template {
+//   width: 650px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-wrap: wrap;
+//   flex-direction: row;
+//   position: relative;
+// }
 

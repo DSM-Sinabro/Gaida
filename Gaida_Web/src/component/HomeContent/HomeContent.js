@@ -11,21 +11,31 @@ class HomeContent extends React.Component {
     super(props);
   }
   render() {
-    console.log(this.props.isSideMenuOpen)
+    console.log(this.props.popularGaida);
     return(
          <div className = {this.props.isSideMenuOpen ? styles.homeContent : styles.homeContent__menuout}>
           <div className = {styles.recommendService}>
             <NameHeader subjectTitle = "추천 서비스"/>
-            <RecommendVideo />
-            <RecommendVideo />
+            <div className = {styles.service__content}>
+              <RecommendVideo />
+              <RecommendVideo />
+            </div>
           </div>
           <div className = {styles.popularGaida}>
             <NameHeader subjectTitle = "인기 가이다"/>
-            <div className = {styles.popularGaida__template}>
-              <PopularVideo />
-              <PopularVideo />
-              <PopularVideo />
-              <PopularVideo />
+            <div className = {styles.service__content}>
+              {
+                this.props.popularGaida.map((contents, i) => {
+                  return (
+                    <PopularVideo
+                    rank = {contents.rank}
+                    title = {contents.title}
+                    artist = {contents.artist}
+                    key = {i}
+                    />
+                  )
+                })
+              }
             </div>
           </div>
         </div>  
