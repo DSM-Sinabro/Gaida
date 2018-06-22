@@ -15,8 +15,8 @@ class Main extends React.Component {
         { rank : 4 , title : this.sliceVideoTitle("러시아 월드컵 '웃음후보' 이란?"), artist : 'MAMAMOO' , thumbnail : require('../../assets/testimage4.png')},
       ],
       recommend : [
-        { logo : '', title : '', mainVideo : require('../../assets/ocean.mp4'), secondVideo : require('../../assets/testVideo1.mp4'), thirdVideo : require('../../assets/testVideo2.mp4')},
-        { logo : '', title : '', mainVideo : require('../../assets/ocean.mp4'), secondVideo : require('../../assets/testVideo1.mp4'), thirdVideo : require('../../assets/testVideo2.mp4')}
+        { logo : '', title : '', mainVideo : require('../../assets/ocean.mp4'), secondVideo : require('../../assets/ocean.mp4'), thirdVideo : require('../../assets/ocean.mp4')},
+        { logo : '', title : '', mainVideo : require('../../assets/ocean.mp4'), secondVideo : require('../../assets/ocean.mp4'), thirdVideo : require('../../assets/ocean.mp4')}
       ]
     }
   }

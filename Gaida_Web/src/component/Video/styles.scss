@@ -76,25 +76,18 @@
 
   video {
     width: 100%;
-    height: 100%;
+  }
+}
+
+@media screen and (max-width : 375px)
+{
+  .recommendVideoCover {
+    width: 300px; 
+    height: 200px;
+  }
+  .addInfo, .secondVideo, .thirdVideo {
+    width: 100px;
+    height: 33px;
   }
 
 }
-
-
-
-// @media screen and (min-width : 600px)
-// {
-//   .popularvideoCover {
-//     width: 230px;
-//     height: 300px;
-//   }
-// }
-
-// @media screen and (max-width : 599px)
-// {
-//   .popularvideoCover {
-//     width: 100px;
-//     height: 100px;
-//   }
-// }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom'
 import Login from './container/LoginContainer';
 import Join from './container/JoinContainer';
 import setInterest from './container/InterestContainer';

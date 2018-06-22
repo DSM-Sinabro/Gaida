@@ -24,12 +24,14 @@ class HomeContent extends React.Component {
                   mainVideo = {contents.mainVideo}
                   secondVideo = {contents.secondVideo}
                   thirdVideo = {contents.thirdVideo}
+                  key = {i}
                   />
                 )
               })
             }
             </div>
           </div>
+          <div className = {styles.vl}></div>
           <div className = {styles.popularGaida}>
             <NameHeader subjectTitle = "인기 가이다"/>
             <div className = {styles.popular__content}>
