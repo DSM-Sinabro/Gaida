@@ -17,8 +17,17 @@ class HomeContent extends React.Component {
           <div className = {styles.recommendService}>
             <NameHeader subjectTitle = "추천 서비스"/>
             <div className = {styles.recommend__content}>
-              <RecommendVideo />
-              <RecommendVideo />
+            {
+              this.props.recommend.map((contents, i) => {
+                return(
+                  <RecommendVideo 
+                  mainVideo = {contents.mainVideo}
+                  secondVideo = {contents.secondVideo}
+                  thirdVideo = {contents.thirdVideo}
+                  />
+                )
+              })
+            }
             </div>
           </div>
           <div className = {styles.popularGaida}>

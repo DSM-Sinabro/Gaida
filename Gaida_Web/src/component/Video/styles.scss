@@ -13,10 +13,9 @@
   margin: 1em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  border: 1px solid #C4C4C4;
+  background: black;
 
-  div {
-    border: 1px solid black;
-  }
 }
 
 .mainVideo {
@@ -24,6 +23,7 @@
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 4;
+  background-color: black;
 }
 
 
@@ -64,6 +64,21 @@
   font-size: 11px;
   text-indent: 10px;
   color: white;
+}
+
+.addInfo {
+  background-color: white;
+}
+
+.addInfo, .secondVideo, .thirdVideo {
+  width: 190px;
+  height: 97px;
+
+  video {
+    width: 100%;
+    height: 100%;
+  }
+
 }
 
 
