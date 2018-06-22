@@ -1,12 +1,13 @@
 import React from 'react';
 import Header from '../component/Header/Header';
-import SideMenu from '../component/SideMenu/SideMenu';
-import HomeContent from '../component/HomeContent/HomeContent';
+import SideMenu from '../component/SideMenu/SideMenu'
 import Content from '../component/Content/Content';
+import GaidaContent from '../component/GaidaTab/Gaida';
 import { sliceVideoTitle } from '../module/module';
 
-class Main extends React.Component {
-  constructor(props){
+
+class Gaida extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       popular : [
@@ -19,10 +20,6 @@ class Main extends React.Component {
         { rank : 6 , title : sliceVideoTitle("러시아 월드컵 '웃음후보' 이란?"), artist : 'MAMAMOO' , thumbnail : require('../../assets/testimage4.png')},
         { rank : 6 , title : sliceVideoTitle("러시아 월드컵 '웃음후보' 이란?"), artist : 'MAMAMOO' , thumbnail : require('../../assets/testimage4.png')},
         { rank : 6 , title : sliceVideoTitle("러시아 월드컵 '웃음후보' 이란?"), artist : 'MAMAMOO' , thumbnail : require('../../assets/testimage4.png')},
-      ],
-      recommend : [
-        { logo : '', title : '', mainVideo : require('../../assets/ocean.mp4'), secondVideo : require('../../assets/ocean.mp4'), thirdVideo : require('../../assets/ocean.mp4')},
-        { logo : '', title : '', mainVideo : require('../../assets/ocean.mp4'), secondVideo : require('../../assets/ocean.mp4'), thirdVideo : require('../../assets/ocean.mp4')}
       ]
     }
   }
@@ -31,10 +28,10 @@ class Main extends React.Component {
       <div>
         <Header />
         <SideMenu />
-        <Content children = {<HomeContent recommend = {this.state.recommend} popularGaida = {this.state.popular}/>}/>
+        <Content children = { <GaidaContent  popularGaida = {this.state.popular}/> } />
       </div>
     )
   }
 }
 
-export default Main;
+export default Gaida;

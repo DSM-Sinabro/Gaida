@@ -2,8 +2,9 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom'
 import Login from './container/LoginContainer';
 import Join from './container/JoinContainer';
-import setInterest from './container/InterestContainer';
+import SetInterest from './container/InterestContainer';
 import Main from './container/Main';
+import Gaida from './container/Gaida';
 
 class App extends React.Component {
     constructor(props) {
@@ -15,7 +16,8 @@ class App extends React.Component {
                 <Route exact path = "/" component = { Main }/>
                 <Route path = "/login" component = { Login }/>
                 <Route path = "/join" component = { Join }/>
-                <Route path = "/setinterest" component = { setInterest }/>
+                <Route path = "/setinterest" component = { SetInterest }/>
+                <Route path = "/gaida" component = { Gaida }/>
             </Switch>
         );
     }

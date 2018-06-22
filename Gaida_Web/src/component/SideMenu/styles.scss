@@ -61,7 +61,8 @@ li {
   @include displayFlex();
 }
 
-li > div {
+li > .item {
+  text-decoration: none;
   width: 80%;
   height: 80%;
   text-indent: 50px;

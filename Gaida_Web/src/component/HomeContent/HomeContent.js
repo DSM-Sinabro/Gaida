@@ -11,10 +11,9 @@ class HomeContent extends React.Component {
     super(props);
   }
   render() {
-    console.log(this.props.popularGaida);
     return(
-         <div className = {this.props.isSideMenuOpen ? styles.homeContent : styles.homeContent__menuout}>
-          <div className = {styles.recommendService}>
+      <React.Fragment>
+        <div className = {styles.recommendService}>
             <NameHeader subjectTitle = "추천 서비스"/>
             <div className = {styles.recommend__content}>
             {
@@ -50,7 +49,7 @@ class HomeContent extends React.Component {
               }
             </div>
           </div>
-        </div>  
+        </React.Fragment>
     )
   }
 }
