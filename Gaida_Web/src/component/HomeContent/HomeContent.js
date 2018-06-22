@@ -16,14 +16,14 @@ class HomeContent extends React.Component {
          <div className = {this.props.isSideMenuOpen ? styles.homeContent : styles.homeContent__menuout}>
           <div className = {styles.recommendService}>
             <NameHeader subjectTitle = "추천 서비스"/>
-            <div className = {styles.service__content}>
+            <div className = {styles.recommend__content}>
               <RecommendVideo />
               <RecommendVideo />
             </div>
           </div>
           <div className = {styles.popularGaida}>
             <NameHeader subjectTitle = "인기 가이다"/>
-            <div className = {styles.service__content}>
+            <div className = {styles.popular__content}>
               {
                 this.props.popularGaida.map((contents, i) => {
                   return (
@@ -31,6 +31,7 @@ class HomeContent extends React.Component {
                     rank = {contents.rank}
                     title = {contents.title}
                     artist = {contents.artist}
+                    thumbnail = {contents.thumbnail}
                     key = {i}
                     />
                   )
