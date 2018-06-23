@@ -1,5 +1,6 @@
 import React from 'react';
 import PopularVideoForList from '../Video/PopularVideoForList';
+import SelectCategory from './SelectCategory';
 import styles from './styles.scss';
 
 class Gaida extends React.Component {
@@ -7,6 +8,7 @@ class Gaida extends React.Component {
     return(
       <React.Fragment>
         <div className = {styles.gaida}>
+        <SelectCategory />
         {
           this.props.popularGaida.map((content, i) => {
             return(
