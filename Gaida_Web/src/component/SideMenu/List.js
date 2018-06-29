@@ -9,7 +9,7 @@ class List extends React.Component {
       <React.Fragment>
         <li><Link to = "/" className = {styles.item}>홈</Link></li>
         <li><Link to = "/" className = {styles.item}>인기</Link></li>
-        <HLine />
+        <HLine width = {"70%"}/>
         <li><Link to = "/gaida" className = {styles.item}><div>가이다</div></Link></li>
         <li><Link to = "/tip" className = {styles.item}>팁</Link></li>
       </React.Fragment>
