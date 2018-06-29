@@ -5,6 +5,7 @@ import Join from './container/JoinContainer';
 import SetInterest from './container/InterestContainer';
 import Main from './container/Main';
 import Gaida from './container/Gaida';
+import ContentView from './container/ContentView';
 
 class App extends React.Component {
     constructor(props) {
@@ -18,6 +19,7 @@ class App extends React.Component {
                 <Route path = "/join" component = { Join }/>
                 <Route path = "/setinterest" component = { SetInterest }/>
                 <Route path = "/gaida" component = { Gaida }/>
+                <Route path = "/viewContent" component = { ContentView }/>
             </Switch>
         );
     }

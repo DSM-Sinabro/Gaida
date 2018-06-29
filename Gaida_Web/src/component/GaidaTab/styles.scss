@@ -10,7 +10,41 @@
 
 .selectBar {
   width: 100%;
-  height: 40px;
-  border: 1px solid black;
-
+  height: 50px;
+  background-color: white;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
 }
+
+.custom_select {
+  position: relative;
+  width: 200px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.custom_select select {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  font-size: 14px;
+  text-indent: 20px;
+  background-color: white;
+  border-color: white;
+  color: #797979;
+  -webkit-appearance: none;
+  position: relative;
+  background-image: url('../../../assets/down-arrow.png');
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 10% auto;
+}
+
+.select-selected {
+  background-color: purple;
+    
+}
+
