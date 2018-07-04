@@ -1,0 +1,51 @@
+
+@mixin serviceContentSize($width) {
+  width : $width;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  position: relative;
+}
+
+.recommend__content {
+  @include serviceContentSize(600px);  
+}
+
+.popular__content {
+  @include serviceContentSize(530px)
+}
+
+.vl {
+  border-left: 1px solid #C3C3C3;
+  height: 600px;
+  margin: 0 10px 0 10px;
+}
+
+@media screen and (max-width : 1400px)
+{
+  .vl {
+    width: 500px;
+    height: 0px !important;
+    border: 1px solid #C3C3C3;
+    margin: 30px 0 30px 0 !important;
+  }
+}
+
+
+@media screen and (max-width : 375px)
+{
+  .recommend__content {
+    width: 300px;
+  }
+  .popular__content {
+    flex-direction: column;
+    width: 300px;
+  }
+  .vl {
+    width: 300px;
+  }
+}
+
+

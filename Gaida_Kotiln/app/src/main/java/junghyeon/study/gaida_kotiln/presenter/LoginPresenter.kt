@@ -16,12 +16,10 @@ import retrofit2.Response
 
 class LoginPresenter : BasePresenter<LoginView>{
 
-
     private var loginView: LoginView? = null
 
     fun login() {
         loginView?.let {
-            if (it.passwordValidate()) {
                 HttpService.api.signIn(it.getUserId(), it.getUserPassword())
                         .enqueue(object : Callback<AuthModel> {
                             @SuppressLint("ResourceType")
@@ -36,17 +34,11 @@ class LoginPresenter : BasePresenter<LoginView>{
                             }
                         })
             }
-        }
-
     }
 
     fun checkPasswordValidate(){
         loginView?.let{
-            if(it.passwordValidate()){
-                it.setCheckTextGone()
-            }else{
-                it.setCheckTextVisible()
-            }
+            it.setCheckTextGone()
         }
     }
 
@@ -54,7 +46,7 @@ class LoginPresenter : BasePresenter<LoginView>{
     fun nextMainActivity(){
         //null 아닐때만
         loginView?.let {
-            if(it.passwordValidate()){
+            if(true){
                 it.nextMainActivity()
             }else{
                 it.showError("패스워드를 확인해주세요")

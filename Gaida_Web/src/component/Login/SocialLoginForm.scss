@@ -1,0 +1,77 @@
+.social_login_form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: rgb(112, 112, 112);
+}
+
+.social_login {
+    width: 350px;
+    height: 50px;
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+@mixin social_login_box($color) {
+    width: 50%;
+    height: 100%;
+    background-color: $color;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+@mixin login_with_box {
+    font-size: 11px;
+    position: absolute;
+    font-weight: 400;
+}
+
+.facebook {
+    @include social_login_box(rgb(68,105,176));
+    color: white;
+    &:before {
+        content: "";
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        left: 5px;
+        background-image: url('../../../assets/f_logo.png');
+        background-size: 100% auto;
+        opacity: 0.5;
+    }
+    .login_with {
+        @include login_with_box();
+        right: 10px;
+        height: 12px;
+    }
+}
+
+.kakao {
+    @include social_login_box(rgb(249,223,50));
+    color: #3B1E1E;
+    &:before {
+        content: "";
+        width: 70px;
+        height: 30px;
+        position: absolute;
+        right: 5px;
+        background-image: url('../../../assets/k_logo.png');
+        opacity: 0.5;
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+    }
+
+    .login_with {
+        @include login_with_box();
+        left: 10px;
+        height: 12px;
+    }
+}

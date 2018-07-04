@@ -3,27 +3,25 @@ package junghyeon.study.gaida_kotiln.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.annotation.IdRes
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import com.facebook.CustomTabActivity
-import com.facebook.FacebookActivity
 import com.facebook.FacebookSdk
 import junghyeon.study.gaida_kotiln.R
 import junghyeon.study.gaida_kotiln.presenter.LoginPresenter
 import junghyeon.study.gaida_kotiln.view.LoginView
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.actvity_login2.*
 
 class LoginActivity : BaseActivity(), LoginView {
     var presenter : LoginPresenter?=null
+    var checkAble=false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FacebookSdk.sdkInitialize(applicationContext)
 
-        setContentView(R.layout.activity_login)
-
+        setContentView(R.layout.actvity_login2)
         presenter= LoginPresenter()
         presenter!!.addView(this)
 
@@ -42,10 +40,18 @@ class LoginActivity : BaseActivity(), LoginView {
         })
 
         loginButton.setOnClickListener {
-            login()
+//            login()
             presenter!!.nextMainActivity()
+
         }
 
+        iv_login_check.setOnClickListener {
+            checkAble=!checkAble
+            when(checkAble){
+                true-> iv_login_check.setImageResource(R.drawable.checked_normal)
+                false-> iv_login_check.setImageResource(R.drawable.unchecked_normal)
+            }
+        }
     }
 
     private fun login(){
@@ -80,21 +86,6 @@ class LoginActivity : BaseActivity(), LoginView {
         password_check.visibility= View.VISIBLE
     }
 
-
-    override fun passwordValidate(): Boolean {
-        var text=password.text.toString().trim()
-        if (text.length == 0) {
-            //맨처음
-            return false
-        }
-        for (i in 0 until text.length) {
-            //알파벳이 거나 숫자이면 true
-            if (!Character.isLetterOrDigit(text.get(i))) {
-                return true
-            }
-        }
-        return false
-    }
 
     override fun nextMainActivity() {
         Intent(this,MainActivity::class.java).let {

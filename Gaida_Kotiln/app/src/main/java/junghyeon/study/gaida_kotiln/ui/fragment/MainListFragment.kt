@@ -29,8 +29,6 @@ class MainListFragment : Fragment() {
     }
 
     companion object {
-        // TODO: Rename parameter arguments, choose names that match
-        // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
         private val CONFIRM = "confirm"
 
         fun newInstance(confirm: Int): MainListFragment {
@@ -41,4 +39,4 @@ class MainListFragment : Fragment() {
             return fragment
         }
     }
-}// Required empty public constructor
+}

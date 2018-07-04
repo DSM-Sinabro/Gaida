@@ -11,4 +11,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="loginIntro">페이스북 계정으로 편리하게 로그인하시고\n다양한 광고를 실시간으로 보세요!</string>
 </resources>

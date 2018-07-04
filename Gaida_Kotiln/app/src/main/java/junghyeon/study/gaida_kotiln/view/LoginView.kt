@@ -7,10 +7,8 @@ import android.support.annotation.IdRes
  */
 interface LoginView : BaseView{
 
-
     fun getUserId() : String
     fun getUserPassword() : String
-    fun passwordValidate() : Boolean
     fun setCheckTextVisible()
     fun setCheckTextGone()
     fun nextMainActivity()

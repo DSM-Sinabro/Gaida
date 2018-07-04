@@ -1,0 +1,79 @@
+@mixin displayFlex() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidemenu, .sidemenu__hidden {
+  width: 200px;
+  height: calc(100vh - 80px);
+  background-color: #EDEDED;
+  position: relative;
+  float: left;
+  z-index: 2;
+  display: block;
+  box-shadow: 2.5px 2.5px 2.5px #C4C4C4;
+}
+
+.sidemenu {
+  display: inline-block;;
+  // animation: slidein 1s normal;
+  // animation-fill-mode: forwards;
+}
+
+.sidemenu__hidden {
+  display: none;
+  // animation: slideout 1s normal; 
+  // animation-fill-mode: forwards;
+}
+
+// @keyframes slidein {
+//   0% {
+//     left: -200px;
+//   }
+
+//   100% {
+//     left: 0;
+//   }
+// }
+
+// @keyframes slideout {
+//   0% {
+//     left: 0px;
+//   }
+
+//   100% {
+//     left: -200px;
+//   }
+
+// }
+
+ul {
+  margin-top: 30px;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  width: 100%;
+  height: 50px;
+  text-align: right;
+  @include displayFlex();
+}
+
+li > .item {
+  text-decoration: none;
+  width: 80%;
+  height: 80%;
+  text-indent: 50px;
+  font-weight: 700;
+  color: #797979;
+  cursor: pointer;
+  @include displayFlex();
+
+  &:hover {
+    background-color: #77D0FF;
+    color: white;
+  }
+}
+
