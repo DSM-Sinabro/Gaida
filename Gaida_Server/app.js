@@ -1,10 +1,8 @@
 const express = require('express'),
     http = require('http'),
-    // https = require('https'),
+    https = require('https'),
     morgan = require('morgan'),
-    // path = require('path');
     bodyParser = require('body-parser'),
-    // fs = require('fs'),
     mongoose = require('mongoose');
 
 // const options = {
@@ -23,10 +21,10 @@ const PORT1 = 3000;
 // const jwtMiddleware = require('./lib/token');
 
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true, parameterLimit: 1000000}));
+app.use(bodyParser.json({limit: '50mb', extended: true}));
 // app.use(jwtMiddleware);
-
+app.use(express.static(__dirname + '/public'));
 
 // Connecting DB
 mongoose.connect(config.MONGO_URI)
@@ -74,10 +72,9 @@ app.use(function (req, res, next) {
 //     res.render('error');
     
 // });
-const { jwtMiddleware } = require('./lib/token');
-app.use(jwtMiddleware);
-const router = require('./routes');
-app.use('/',router);
+// app.use(express.limit(100000000));
+
+app.use('/api', require('./routes/api'));
 // let user = require('./controllers/auth.controller');
 // app.get('/checkEmail/:email', (req, res) => {
 //     res.status(200).json("fasd");

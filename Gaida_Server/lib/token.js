@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken'),
 const JWT_SECRET = require('../config/index').JWT_SECRET;
 const JWT_SECRET2 = require('../config/index').JWT_SECRET2;
 
-exports.generateToken = function(payload) {
+exports.generateToken = (payload) => {
     return new Promise(
         (resolve, reject) => {
             jwt.sign(
@@ -19,10 +19,9 @@ exports.generateToken = function(payload) {
         }
     );
 };
-exports.generateRefreshToken = function(payload) {
+exports.generateRefreshToken = payload => {
     return new Promise(
         (resolve, reject) => { 
-            console.log(payload);
             jwt.sign(
                 {
                     'payload':{
@@ -41,7 +40,8 @@ exports.generateRefreshToken = function(payload) {
         }
     );
 };
-exports.decodeToken = function(token) {
+
+exports.decodeToken = token => {
     return new Promise(
         (resolve, reject) => {
             jwt.verify(token, JWT_SECRET, (error, decoded) => {
@@ -51,7 +51,8 @@ exports.decodeToken = function(token) {
         }
     );
 };
-exports.decodeRefreshToken = function(token) {
+
+exports.decodeRefreshToken = token => {
     return new Promise(
         (resolve, reject) => {
             jwt.verify(token, JWT_SECRET2, (error, decoded) => {
@@ -60,25 +61,4 @@ exports.decodeRefreshToken = function(token) {
             });
         }
     );
-};
-exports.jwtMiddleware = async (req, res, next) => {
-    const token = req.headers.token;
-    if(!token) return next();
-    
-    try {
-        const decoded = await decodeToken(token);
-
-        if(Date.now() / 1000 - decoded.iat > 60 * 60 * 24) {
-            const {
-                _id, 
-                profile
-            } = decoded;
-            const freshToken = await generateToken({_id, profile},'user');
-            req.headers.token=freshToken;
-        }
-        req.user = decoded;
-    } catch(e) {
-        req.user = null;
-    }
-    return next();
 };

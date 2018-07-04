@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
   "dependencies": {
     "bcrypt": "^2.0.1",
@@ -14,6 +14,7 @@
     "debug": "~2.6.9",
     "ejs": "^2.5.9",
     "express": "~4.16.0",
+    "formidable": "^1.2.1",
     "joi": "^13.2.0",
     "jsonwebtoken": "^8.2.1",
     "mongoose": "^5.0.16",
@@ -22,6 +23,7 @@
     "nodemailer": "^4.6.4",
     "nodemon": "^1.17.3",
     "parse-error": "^0.2.0",
+    "path": "^0.12.7",
     "rand-token": "^0.4.0",
     "uid": "0.0.2"
   }

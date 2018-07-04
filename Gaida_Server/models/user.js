@@ -1,16 +1,9 @@
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    // bcrypt = require('bcrypt')
     crypto = require('crypto');
 const PASSWORD_SECRET = require('../config').PASSWORD_SECRET;
-
 const { generateToken, generateRefreshToken, decodeRefreshToken } = require('../lib/token');
 const User = new Schema({
-    // _id : {
-    //     type : String,
-    //     required : true,
-    //     unique : true
-    // },
     profile : {
         username : String,
         thumbnail : {
@@ -41,27 +34,19 @@ const User = new Schema({
     refreshToken : {
         type : String,
         default : null
-    },
-    check : {
-        type : Boolean,
-        required : true,
-        default : false
     }
+    // ,
+    // check : {
+    //     type : Boolean,
+    //     required : true,
+    //     default : false
+    // }
 });
 
 
 function hash(password) {
     return crypto.createHmac('sha256', PASSWORD_SECRET).update(password).digest('hex');
 }
-// User.pre("save", function(next){
-//     const user = this;
-//     if(!user.isModified("password")){
-//         return next();
-//     }else{
-//         user.password = bcrypt.hashSync(user.password);
-//         return next();
-//     }
-// });
 User.statics.updateTokenByEmail = function(email, refreshToken){
     // return this.update({email:email},{$set:{refreshToken: token}},{new:true});
     return this.update({'email':email},{$set:{'refreshToken':refreshToken}},{new: true},(err, raw)=>{
@@ -76,15 +61,6 @@ User.methods.updateTokenBy_id = function(_id, refreshToken){
         return raw;
     });
 };
-// function updateTokenByEmail(user, token) {
-//     return new Promise(
-//         (resolve, reject) => {
-//             user.update({'email':user.email},{$set:{'refreshToken':token}},{new: true},(err, raw)=>{
-//                 if(err)  reject(err);
-//                 resolve(token);
-//         });
-//     });
-// }
 User.statics.findByUsername = function(username) {
     return this.findOne({'profile.username': username}).exec();
 };
@@ -151,28 +127,14 @@ User.statics.checkRefreshToken = async function(refreshToken) {
         }else {
             return null;
         }
-        // console.log(decoded.payload.uid);
-        // console.log(decoded2.payload.uid);
-        
-        
     } catch(e){
         return e;
     }
 };
-User.statics.generateTokens = async function() {
-    const token = await this.generateToken();
-    const refreshToken = await this.generateRefreshToken();
-    let tokens = {
-        token,
-        refreshToken
-    };
-    return tokens;
-};
 User.statics.logout = function(token) {
     return decodeRefreshToken(token)
         .then(result => {
-                console.log(result);
-                return this.update({'_id':result.payload._id},{$set:{'refreshToken':null}}) 
+                return this.update({'_id':result.payload._id},{$set:{'refreshToken':null}});
             }   
         )
         .then(nResult =>
