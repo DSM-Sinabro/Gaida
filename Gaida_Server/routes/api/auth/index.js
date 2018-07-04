@@ -10,7 +10,7 @@ router.route('/checkEmail/:email').get(auth.checkEmail);
 router.route('/checkUsername/:username').get(auth.checkUsername);
 router.route('/refreshToken').get(auth.refreshToken);
 
-router.use('/check', jwtMiddleware);
-router.route('/check').get(auth.checkToken);
+router.use('/verifyToken', jwtMiddleware);
+router.route('/verifyToken').get(auth.checkToken);
 
 module.exports = router;

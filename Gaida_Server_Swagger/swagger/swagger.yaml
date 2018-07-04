@@ -2,7 +2,7 @@ swagger: "2.0"
 info:
   description: "This is gaida API Docs. almost API using JWT."
   version: "1.0.0"
-  title: "Swagger gaida"
+  title: "Swagger gaida http://localhost:3000/"
 host: "awsdomain"
 basePath: "/"
 tags:
@@ -38,7 +38,7 @@ schemes:
 # #     name: Authorization
 # #     in: header
 paths:
-  /auth/login:
+  /api/auth/login/local:
     post:
       summary: user login
       description: user login
@@ -94,7 +94,7 @@ paths:
               message:
                 type: string
                 example: "error message"
-  /auth/register:
+  /api/auth/register/local:
     post:
       summary: user register
       description: user register
@@ -157,7 +157,7 @@ paths:
               message:
                 type: string
                 example: "error message"
-  /auth/update:
+  /api/uth/update:
     put:
       summary: user info update
       description: user info update
@@ -221,7 +221,7 @@ paths:
               message:
                 type: string
                 example: "error message"
-  /auth/logout:
+  /api/auth/logout/local:
     delete:
       summary: user logout
       description: user logout and delete token
@@ -271,7 +271,7 @@ paths:
                 example: "error message"
         
         
-  /refreshToken:
+  /api/auth/refreshToken:
     get:
       summary: token refresh
       description: token refresh
@@ -322,7 +322,7 @@ paths:
               message:
                 type: string
                 example: "error message"
-  /verifyToken:
+  /api/auth/verifyToken:
     get:
       summary: verify token
       description: check this token is verify
