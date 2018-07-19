@@ -44,7 +44,8 @@
         </activity>
         <activity android:name=".ui.activity.IntroActivity" />
         <activity android:name=".ui.activity.AlbumActivity" />
-        <activity android:name=".ui.activity.MypageActivity"></activity>
+        <activity android:name=".ui.activity.MypageActivity" />
+        <activity android:name=".ui.activity.SingUpActivity"></activity>
     </application>
 
 </manifest>

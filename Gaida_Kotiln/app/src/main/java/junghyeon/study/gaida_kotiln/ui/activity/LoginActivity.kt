@@ -19,7 +19,6 @@ class LoginActivity : BaseActivity(), LoginView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        FacebookSdk.sdkInitialize(applicationContext)
 
         setContentView(R.layout.actvity_login2)
         presenter= LoginPresenter()
@@ -29,19 +28,9 @@ class LoginActivity : BaseActivity(), LoginView {
     }
 
     private fun init(){
-        password.addTextChangedListener(object : TextWatcher{
-            override fun afterTextChanged(s: Editable?) {
-                presenter!!.checkPasswordValidate()
-            }
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            }
-        })
 
         loginButton.setOnClickListener {
-//            login()
-            presenter!!.nextMainActivity()
+            presenter!!.login()
 
         }
 
@@ -52,10 +41,13 @@ class LoginActivity : BaseActivity(), LoginView {
                 false-> iv_login_check.setImageResource(R.drawable.unchecked_normal)
             }
         }
-    }
 
-    private fun login(){
-        presenter!!.login()
+        tv_toolbar_title_sign_up.setOnClickListener {
+            Intent(applicationContext, SingUpActivity::class.java).let {
+                startActivity(it)
+                finish()
+            }
+        }
     }
 
     override fun getUserId(): String {
@@ -86,9 +78,8 @@ class LoginActivity : BaseActivity(), LoginView {
         password_check.visibility= View.VISIBLE
     }
 
-
     override fun nextMainActivity() {
-        Intent(this,MainActivity::class.java).let {
+        Intent(applicationContext,MainActivity::class.java).let {
             startActivity(it)
             finish()
         }

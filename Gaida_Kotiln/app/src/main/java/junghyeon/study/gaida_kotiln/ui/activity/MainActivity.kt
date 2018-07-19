@@ -44,7 +44,9 @@ class MainActivity : BaseActivity(){
         })
 
         setBottomSheet()
-        floating_button.setOnClickListener {
+
+        var floatingActionButton = findViewById<FloatingActionButton>(R.id.floating_button)
+        floatingActionButton.setOnClickListener {
             bottomSheet.show()
         }
     }
@@ -65,9 +67,6 @@ class MainActivity : BaseActivity(){
             main_bottom_sheet_recyclerView.layoutManager= GridLayoutManager(context,3)
             main_bottom_sheet_recyclerView.adapter=bottomSheetAdapter
         }
-
-
-
     }
 
     private fun setBottomSheetView(view: View){

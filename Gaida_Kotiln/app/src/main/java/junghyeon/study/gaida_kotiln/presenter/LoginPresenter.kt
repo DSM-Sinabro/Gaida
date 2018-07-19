@@ -1,6 +1,7 @@
 package junghyeon.study.gaida_kotiln.presenter
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import junghyeon.study.gaida_kotiln.R
 import junghyeon.study.gaida_kotiln.model.AuthModel
 import junghyeon.study.gaida_kotiln.serivce.HttpService
@@ -20,20 +21,29 @@ class LoginPresenter : BasePresenter<LoginView>{
 
     fun login() {
         loginView?.let {
-                HttpService.api.signIn(it.getUserId(), it.getUserPassword())
-                        .enqueue(object : Callback<AuthModel> {
-                            @SuppressLint("ResourceType")
-                            override fun onResponse(call: Call<AuthModel>?, response: Response<AuthModel>?) {
-                                when (response!!.code()) {
-                                    200 -> loginView!!.showSuccess("로그인 성공")
-                                }
-                            }
-                            @SuppressLint("ResourceType")
-                            override fun onFailure(call: Call<AuthModel>?, t: Throwable?) {
-                                loginView!!.showError("로그인 실패")
-                            }
-                        })
-            }
+   /*         if(it.getUserId().equals("1234") && it.getUserPassword().equals("1234")){
+                Toast.makeText(it.getContext(),"로그인 성공",Toast.LENGTH_SHORT).show()
+                it.nextMainActivity()
+            }else{
+                Toast.makeText(it.getContext(),"아이디 비밀번호를 다시 입력해주세요",Toast.LENGTH_SHORT).show()
+            }*/
+
+            HttpService.api.signIn(it.getUserId(),it.getUserPassword()).enqueue(object : Callback<AuthModel>{
+                override fun onFailure(call: Call<AuthModel>?, t: Throwable?) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+                override fun onResponse(call: Call<AuthModel>?, response: Response<AuthModel>?) {
+                    when(response!!.code()){
+                        200-> Toast.makeText(it.getContext(),"로그인 성공",Toast.LENGTH_SHORT).show()
+                        else ->{
+                            Toast.makeText(it.getContext(),"아이디 비밀번호를 다시 입력해주세요",Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+            })
+        }
     }
 
     fun checkPasswordValidate(){
